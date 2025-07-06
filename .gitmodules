@@ -1,0 +1,3 @@
+[submodule "rl_exercises/week_10/CARL"]
+	path = rl_exercises/week_10/CARL
+	url = git@github.com:automl/CARL.git
