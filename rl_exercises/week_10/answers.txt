@@ -1,0 +1,4 @@
+--- Setup ---
+We want to generalize within the CartPole environment, where we want to compare two different pole lenghts. 
+Because the environments are roughly the same in both contexts and we expect the training process to be of roughly equal difficulty, we also expect both contexts to have similar results after HPO.
+For the agent training, we deploy DQN from Stable Baselines3 and we optimize the HPs learning_starts, batch_size and learning_rate simply using random search.
