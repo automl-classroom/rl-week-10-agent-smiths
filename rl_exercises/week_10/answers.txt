@@ -1,4 +1,11 @@
 --- Setup ---
-We want to generalize within the CartPole environment, where we want to compare two different pole lenghts. 
+We want to generalize within the CartPole environment, where we want to compare two different pole lengths. 
 Because the environments are roughly the same in both contexts and we expect the training process to be of roughly equal difficulty, we also expect both contexts to have similar results after HPO.
-For the agent training, we deploy DQN from Stable Baselines3 and we optimize the HPs learning_starts, batch_size and learning_rate simply using random search.
+For the agent training, we deploy DQN from Stable Baselines3 and we optimize the learning rate on a log scale from 1e-6 to 1e-2 simply using random search.
+
+-- Results --
+As our first context, we used the default pole length of 0.5. After 40 random search steps and 10,000 training steps each, we found the best learning rate at roughly 0.000193 for a mean reward of 10.1 and a standard deviation during evaluation of roughly 1.044.
+
+As our second context, we used double the default pole lenghth, i.e. 1. After 40 random search steps and 10,000 training steps each, we found the best learning rate at roughly 0.00001974 for a mean reward of 13.9 and a standard deviation during evaluation of 2.343.
+
+We can observe that even though both environments are pretty similar, the results differ. Because the environment with the longer pole is expected to behave less robustly, our found learning rate is smaller, indicating more variance in the observations. The same idea is reflected in the evaluated final policy, as its standard deviation is also bigger than with the smaller pole length.
